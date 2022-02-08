@@ -1,0 +1,31 @@
+spring:
+  jpa:
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+
+  datasource:
+    database0:  #主库
+      url: jdbc:mysql://localhost:3306/database0
+      username: root
+      password:
+      driver-class-name: com.mysql.jdbc.Driver
+      databaseName: database0
+    database1:  #从库
+      url: jdbc:mysql://localhost:3306/database1
+      username: root
+      password:
+      driver-class-name: com.mysql.jdbc.Driver
+      databaseName: database1
+
+  sharding:
+    tables:
+      goods:
+        actualDataNodes: ds.goods_$->{0..1}
+        logicTable: goods
+        tableStrategy:
+          standard:
+            shardingColumn: goods_id
+  application:
+    name: master-salve-sharding
