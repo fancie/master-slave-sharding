@@ -74,7 +74,6 @@ public class DataSourceConfig {
         shardingRuleConfig.getTableRuleConfigs().add(getTableRuleConfiguration());
         shardingRuleConfig.setDefaultDatabaseShardingStrategyConfig(new InlineShardingStrategyConfiguration("goods_type", "ds"));
 
-        shardingRuleConfig.setDefaultDataSourceName("database");
         MasterSlaveRuleConfiguration masterSlaveRuleConfiguration = new MasterSlaveRuleConfiguration("ds", "database0", Arrays.asList("database1"));
         shardingRuleConfig.setMasterSlaveRuleConfigs(Arrays.asList(masterSlaveRuleConfiguration));
         return ShardingDataSourceFactory.createDataSource(getDataSourceMap(), shardingRuleConfig, new Properties());
